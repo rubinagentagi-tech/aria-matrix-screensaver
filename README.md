@@ -74,7 +74,18 @@ Tuning knobs live in the header constants: `CELL_W/CELL_H` (rain geometry),
 `RAIN_SIZES` (glyph sizes), rain speeds, and the floating-word count / sizes /
 speeds in the word-spawn block.
 
-## License
+## Credits, inspiration & legal
 
-MIT — see [LICENSE](LICENSE). Made with ❤️ for a six-year-old who wanted to
-read the words.
+- **Visual style** is an homage to the green "code rain" made famous by
+  *The Matrix* (1999). This is an independent, original implementation —
+  it contains no code, artwork, or footage from the film and is not
+  affiliated with or endorsed by Warner Bros. Discovery.
+- **Platform**: built for and tested on **Omarchy** (the AI-first Linux
+  distro, https://omarchy.org), alongside its stock screensaver. This code is
+  original — nothing is copied from Omarchy, ttfx, cmatrix, or any other
+  screensaver project; only the generic "falling glyphs" idea is shared, and
+  that aesthetic is used by many projects.
+- **Fonts**: the app uses whatever monospace fonts exist on the system
+  (prefers iA Writer Mono, then DejaVu / Noto). No font files are bundled,
+  and where none of those exist it falls back to pygame's built-in font.
+- **License**: MIT (see LICENSE).
