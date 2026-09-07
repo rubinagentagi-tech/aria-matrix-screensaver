@@ -1,0 +1,13 @@
+#!/bin/bash
+# Aria screensaver launcher — Omarchy/Linux helper (see README.md).
+# Exec-form wrapper: hides the cursor while the app runs and forces the native
+# Wayland driver (SDL's X11 fallback degrades after long sessions on Hyprland).
+# The app itself is cross-platform — this wrapper is the Omarchy-specific part.
+set -euo pipefail
+
+hyprctl eval 'hl.config({ cursor = { invisible = true } })' &>/dev/null || true
+
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+exec env SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0 SDL_VIDEODRIVER=wayland \
+  python3 "$DIR/matrix3d_aria.py"
