@@ -78,8 +78,8 @@ BRAIN_WORDS = [
     # friendly AI / models
     "AI", "ROBOT", "ROBOTS", "OPENAI", "CHATGPT", "CLAUDE", "GEMINI",
     "DEEPSEEK", "LLAMA", "MISTRAL", "GROK",
-    # Aria's own app
-    "SMARTCHAT BY ARIA",
+    # SmartChat
+    "SMARTCHAT",
     # what AI does (kid-friendly)
     "COMPUTER", "CODING", "LEARNING", "MACHINE", "NEURAL", "BRAIN",
     "VOICE", "VISION", "PICTURE", "VIDEO", "MUSIC", "MODEL", "TRAINING",
@@ -135,7 +135,7 @@ def main():
 
     def fit_x(text, size, x):
         """Keep a floating word fully on screen: a long phrase such as
-        "SMARTCHAT BY ARIA" spawned near the right edge would otherwise be cut
+        "SMARTCHAT" spawned near the right edge would otherwise be cut
         off by the screen edge."""
         try:
             wpx = get_font(size, True).size(text)[0]
