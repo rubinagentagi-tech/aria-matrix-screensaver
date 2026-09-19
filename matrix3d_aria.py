@@ -78,6 +78,8 @@ BRAIN_WORDS = [
     # friendly AI / models
     "AI", "ROBOT", "ROBOTS", "OPENAI", "CHATGPT", "CLAUDE", "GEMINI",
     "DEEPSEEK", "LLAMA", "MISTRAL", "GROK",
+    # Aria's own app
+    "SMARTCHAT BY ARIA",
     # what AI does (kid-friendly)
     "COMPUTER", "CODING", "LEARNING", "MACHINE", "NEURAL", "BRAIN",
     "VOICE", "VISION", "PICTURE", "VIDEO", "MUSIC", "MODEL", "TRAINING",
@@ -131,6 +133,16 @@ def main():
             fonts[key] = font_for(size, bold)
         return fonts[key]
 
+    def fit_x(text, size, x):
+        """Keep a floating word fully on screen: a long phrase such as
+        "SMARTCHAT BY ARIA" spawned near the right edge would otherwise be cut
+        off by the screen edge."""
+        try:
+            wpx = get_font(size, True).size(text)[0]
+        except Exception:
+            wpx = int(len(text) * size * 0.6)
+        return max(8, min(x, max(8, W - wpx - 8)))
+
     glyph_cache = {}                # (char, size, color, bold) -> Surface
     def glyph(ch, size, color, bold=False, cjk=None):
         cjk = cjk if cjk is not None else (not ch.isascii())
@@ -174,11 +186,11 @@ def main():
     for _ in range(14):
         w = FloatWord()
         w.text = random.choice(words)
-        w.x = random.uniform(0, W)
+        w.size = random.choice((40, 52, 64, 76))     # Aria: full-size words, slow drift
+        w.x = fit_x(w.text, w.size, random.uniform(0, W))   # size first: fit_x needs it
         w.y = random.uniform(0, H)
         w.dir = 1 if random.random() < 0.5 else -1
         w.speed = random.uniform(0.2, 0.6)
-        w.size = random.choice((40, 52, 64, 76))     # Aria: full-size words, slow drift
         w.gold = random.random() < 0.18
         w.phase = random.uniform(0, 2 * math.pi)
         fwords.append(w)
@@ -278,9 +290,11 @@ def main():
             if w.y > H + 80:
                 w.y = -80
                 w.text = random.choice(words)
+                w.x = fit_x(w.text, w.size, w.x)
             elif w.y < -80:
                 w.y = H + 80
                 w.text = random.choice(words)
+                w.x = fit_x(w.text, w.size, w.x)
             # fade near edges
             edge = min(w.y, H - w.y) if w.dir == 1 else min(H - w.y, w.y)
             alpha = max(0.25, min(1.0, edge / 260.0))

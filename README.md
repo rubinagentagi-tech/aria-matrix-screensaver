@@ -15,7 +15,9 @@ CHIPS…) over a smaller, slower rain — easy on young eyes, still unmistakably
   CJK font is available)
 - 14 full-size floating words (40–76 px) drifting slowly enough to read —
   words cycle through AI labs, **chip makers and their products**, and
-  kid-friendly AI terms (ROBOT, MUSIC, BRAIN, PICTURE…)
+  kid-friendly AI terms (ROBOT, MUSIC, BRAIN, PICTURE…), plus the family app
+  name **SMARTCHAT BY ARIA**. Long phrases stay fully on screen (spawn
+  positions are width-aware, so nothing runs off the right edge).
 - Cycling green → cyan → gold → violet → red palette
 - Exits on any key press or mouse movement
 - Resolution-aware fullscreen; `MATRIX_MONITOR` targets a specific display
